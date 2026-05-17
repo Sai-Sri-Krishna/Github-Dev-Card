@@ -7,7 +7,7 @@ An interactive full-stack application that dynamically generates beautiful, shar
 ## 🚀 Live Demo
 
 Check out the live deployment here:  
-👉 **[Live Demo Link](([https://github-dev-card-g6gm.vercel.app/](https://github-dev-card-g6gm.vercel.app/)))** 
+👉 **[Live Demo Link](https://github-dev-card-g6gm.vercel.app/)**
 
 ---
 

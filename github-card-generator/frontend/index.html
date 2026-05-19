@@ -63,44 +63,37 @@
             const [error, setError] = useState(null);
             const [copied, setCopied] = useState(false);
 
-            const generateCard = async (e) => {
-                e.preventDefault();
-                if (!username) return;
-                
-                setLoading(true);
-                setError(null);
-                setResult(null);
+                        const generateCard = async (e) => {
+    e.preventDefault();
+    if (!username) return;
+    
+    setLoading(true);
+    setError(null);
+    setResult(null);
 
-                try {
-                    // Note: Backend URL injected via envsubst in Docker
-                    const response = await fetch(`${window.BACKEND_URL || 'http://localhost:8000'}/generate`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ username: username.trim() })
-                    });
+    try {
+        // This targets your secure Vercel Serverless Function instead of localhost
+        const response = await fetch(`/api/generate-card?username=${username.trim()}`);
 
-                    if (!response.ok) {
-                        const err = await response.json();
-                        throw new Error(err.detail || 'User not found or API error');
-                    }
+        if (!response.ok) {
+            const err = await response.json();
+            throw new Error(err.error || 'User not found or API error');
+        }
 
-                    const data = await response.json();
-                    
-                    // Fetch the actual HTML content from the static URL
-                    const cardResponse = await fetch(`${window.BACKEND_URL || 'http://localhost:8000'}${data.card_url}`);
-                    const cardHtml = await cardResponse.text();
-                    
-                    setResult({
-                        ...data,
-                        html: cardHtml,
-                        fullUrl: `http://localhost:8000${data.card_url}`
-                    });
-                } catch (err) {
-                    setError(err.message);
-                } finally {
-                    setLoading(false);
-                }
-            };
+        const data = await response.json();
+        
+        setResult({
+            ...data,
+            html: data.html,
+            fullUrl: window.location.origin
+        });
+    } catch (err) {
+        setError(err.message);
+    } finally {
+        setLoading(false);
+    }
+};
+
 
             const copyToClipboard = () => {
                 if (!result) return;

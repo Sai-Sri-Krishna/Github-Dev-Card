@@ -7,7 +7,7 @@ An interactive full-stack application that dynamically generates beautiful, shar
 ## 🚀 Live Demo
 
 Check out the live deployment here:  
-👉 **[Live Demo Link]((https://github-card-frontend-290964486654.us-central1.run.app/))**
+👉 **[Live Demo Link](https://github-card-frontend-290964486654.us-central1.run.app/)**
 
 ---
 

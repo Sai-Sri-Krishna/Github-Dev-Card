@@ -73,7 +73,11 @@
 
     try {
         // This targets your secure Vercel Serverless Function instead of localhost
-        const response = await fetch(`/api/generate-card?username=${username.trim()}`);
+        const API_URL = "https://YOUR-BACKEND.onrender.com";
+
+const response = await fetch(
+  `${API_URL}/api/generate-card?username=${username.trim()}`
+);
 
         if (!response.ok) {
             const err = await response.json();
